@@ -1,0 +1,331 @@
+* {
+    box-sizing: border-box;
+    padding:0px;
+    margin:0px;
+}
+
+body{
+    font-family: 'Karla', sans-serif;
+    position: relative; /* To position footer with respect to the body */
+}
+
+main{
+    background-image:url(./Images/banner.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%; /* Horizontal and vertical height */
+    min-height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.dark{
+    background-image:url("Images/banner_dark.jpg");
+}
+
+
+@keyframes move--forward{
+    0%{
+        transform: translateX(1px)
+    }
+    25%{
+        transform: translateX(6px)
+    }
+    50%{
+        transform: translateX(12px);
+    }
+    75%{
+        transform: translateX(18px)
+    }
+    100%{
+        transform: translateX(24px)
+    }
+}
+
+@keyframes move--backward{
+    0%{
+        transform: translateX(24px)
+    }
+    25%{
+        transform: translateX(18px)
+    }
+    50%{
+        transform: translateX(12px);
+    }
+    75%{
+        transform: translateX(6px)
+    }
+    100%{
+        transform: translateX(1px)
+    }
+}
+
+.toggle--container{
+    position: absolute;
+    left:0;
+    right:0;
+    top:100px;
+    margin-left: auto; /* To make toggle--container at center */
+    margin-right: auto;
+    width:40px;
+    height:15px;
+    background-color:black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1px;
+    transition:background-color 0.5s ease-in-out;
+}
+
+.toggle--ball{
+    width:13px;
+    height:13px;
+    border-radius: 50%;
+    background-color: white;
+    animation-name:move--backward;  /* Switching the dark mode will switch the animation as well */
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function:ease-in-out; 
+    transition:background-color 0.5s ease-in-out;
+}
+
+
+.dark .toggle--container{
+    background-color:white;
+}
+
+.dark .toggle--ball{
+    background-color: black;
+    animation-name:move--forward;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    animation-timing-function:ease-in-out;
+}
+
+.intro--container{
+    display:flex;
+    min-height:150px;
+    flex-direction:column;
+    align-items:center;
+    color:#293264;
+}
+
+.dark .intro--container{
+    color:#1EAE98;    
+}
+
+.intro--heading{
+    margin:0px;
+    font-size: 32px;
+}
+
+.intro--heading::first-letter{
+    color:#EAD31F;
+}
+
+.intro--description{
+    font-size: 14px;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+
+.intro--start--button, .button--play--again, .button--check--answer{
+    background-color: #4D5B9E;
+    border:none;
+    border-radius:15px;
+    margin: 25px 0px;
+    min-width:150px;
+    min-height:35px;
+    color:white;
+    font-family: 'Karla', sans-serif;
+    box-shadow: inset 0.3px 0.3px 8px 0.1px rgba(0,0,0,0.4);
+    cursor:pointer;
+    margin-bottom: 70px;
+}
+
+.dark .intro--start--button{
+    color:black;
+    background-color: white;
+}
+
+.intro--start--button:focus, .button--play--again:focus,.button--check--answer:focus{
+    outline:none !important;/*Used !important to override all previous value of the outline */
+}
+
+button, .option{ /* To remove highlighting of the elements when clicking over them on smartphone */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.loading--text{
+    font-size: 30px;
+}
+
+.dark .loading--text{
+    color:white;
+}
+
+.quiz--container{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding:0px;
+}
+
+.dark .quiz--container{
+    color:#264653;
+}
+
+.question--container{
+    display: flex;
+    width: 95%;
+    min-height: 16%;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    padding:10px 0px;
+}
+
+.dark .question--container{
+    border-color:rgba(255,255,255,0.2);
+}
+
+.question{
+    font-size:2.5vmin;
+    color:#293264;
+}
+
+.dark .question{
+    color:#ffe8d6;
+}
+
+.option--container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width:100%;
+    padding: 10px 0px;
+}
+
+.option--subcontainer{
+    display: flex;
+    width:100%;
+    justify-content:space-around;
+    align-items:center;
+}
+
+input[type="radio"]{ /* To hide the radio circles as we used the functionality of radio button*/
+    display:none;
+}
+
+.option{
+    border:1px solid #4D5B9E;
+    border-radius: 8px;
+    padding:5px 10px;
+    font-size: 2vmin;
+    text-align: center;
+    margin:0px 10px;
+}
+
+.dark .option{
+    color:#184e77;
+}
+
+input[type="radio"]:checked + .option {
+    background-color: #D6DBF5; /* To decorate the label when the input just before it got checked */
+}
+
+.dark input[type="radio"]:checked + .option {
+    background-color:#023047;
+    color:#ffb703;
+}
+
+.score--text{
+    color:#293264;
+    font-size: 16px;
+    margin:10px;
+}
+
+.dark .score--text{
+    color:#ff9f1c;
+}
+
+.dark .button--check--answer, .dark .button--play--again{
+    background-color: white;
+    color:black;
+}
+
+footer{
+    position:absolute;
+    bottom: 10px;
+    width:100%;
+    text-align: center;
+}
+
+.dark footer{
+    color:white;
+}
+
+@media screen and (max-width:600px){
+    .toggle--container{
+        top:80px;
+    }
+    
+    .intro--heading{
+        font-size: 25px;
+    }
+    
+    .intro--description{
+        font-size: 12px;
+        text-align: center;
+    }
+    
+    .intro--start--button, .button--check--answer, .button--play--again{
+        min-width:100px;
+        min-height: 20px;
+        font-size: 3vmin;
+    }
+    
+    .question{
+        text-align: center;
+        width:100%;
+    }
+    
+    .option--container{
+        flex-direction:column; 
+        padding:0px;   
+    }
+    
+    .option{
+        padding:2px 8px;
+        margin:5px 0px;
+        border-radius: 4px;
+    }
+    
+    .question--container{
+        height: 45vw;
+    }
+    
+        
+    .loading--text{
+        font-size: 22px;
+    }
+    
+    .score--text{
+        font-size: 3vw;
+    }
+    
+    footer{
+        font-size: 12px;
+    }
+}
